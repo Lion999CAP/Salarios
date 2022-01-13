@@ -34,8 +34,7 @@ void Salarios::guardar()
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
                                                          "Guardar datos",
                                                          QDir::home().absolutePath(),
-                                                         "Archivos de texto (*.txt)");
-    qDebug() << nombreArchivo;
+                                                         "Archivos de salarios (*.slr)");
 
     // Crear un objeto QFile
     QFile archivo(nombreArchivo);
@@ -56,6 +55,37 @@ void Salarios::guardar()
     // Cerrar el archivo
     archivo.close();
 
+}
+
+void Salarios::abrir()
+{
+    // Abrir cuadro de diálogo para seleccionar ubicación y nombre del archivo.
+    QString nombreArchivo = QFileDialog::getOpenFileName(this,
+                                                         "Abrir datos",
+                                                         QDir::home().absolutePath(),
+                                                         "Archivos de salarios (*.slr)");
+
+    // Crear un objeto QFile
+    QFile archivo(nombreArchivo);
+    // Abrirlo para lectura
+    if(archivo.open(QFile::ReadOnly)){
+        // Crear un 'stream' de texto
+        QTextStream entrada(&archivo);
+        // Leer todo el contenido
+        QString dato= entrada.readAll();
+        //Cargar el contenido al area del texto
+        ui->outResultado->clear();
+        ui->outResultado->setPlainText(dato);
+        // Mostrar 5 segundo que todo fue bien
+        ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
+    }else {
+        // Mensaje de error si no se puede abrir el archivo
+        QMessageBox::warning(this,
+                             "Abrir datos",
+                             "No se pudo abrir el archivo");
+    }
+    // Cerrar el archivo
+    archivo.close();
 }
 
 
@@ -119,5 +149,11 @@ void Salarios::on_actionNuevo_triggered()
 {
     limpiar();
     ui->outResultado->clear();
+}
+
+
+void Salarios::on_actionAbrir_triggered()
+{
+    abrir();
 }
 
