@@ -210,6 +210,7 @@
     <property name="title">
      <string>Ay&amp;uda</string>
     </property>
+    <addaction name="separator"/>
     <addaction name="actionAcerca_de_Salarios"/>
    </widget>
    <addaction name="menuArchivo"/>
