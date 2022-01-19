@@ -37,7 +37,7 @@ void Obrero::setJornada(TipoJornada newJornada)
     m_jornada = newJornada;
 }
 
-double Obrero::salarioBruto() const
+double Obrero::salarioBruto()
 {
     return m_salarioBruto;
 }
@@ -47,7 +47,7 @@ void Obrero::setSalarioBruto(double newSalarioBruto)
     m_salarioBruto = newSalarioBruto;
 }
 
-double Obrero::salarioNeto() const
+double Obrero::salarioNeto()
 {
     return m_salarioNeto;
 }

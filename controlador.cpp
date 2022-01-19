@@ -51,8 +51,30 @@ bool Controlador::calcularSalario()
     m_obrero->setSalarioBruto(salarioBruto);
     m_obrero->setDescuento(descuento);
     m_obrero->setSalarioNeto(salarioNeto);
-    // Retirnar true (todo se calculo correctamente)
+    // Retornar true (todo se calculo correctamente)
     return true;
+
+}
+
+double Controlador::SbrutoTp()
+{
+    double SbrutoTotal=0;
+    SbrutoTotal += m_obrero->salarioBruto();
+    return SbrutoTotal;
+}
+
+double Controlador::SiessTp()
+{
+    double SIess=0;
+    SIess += m_obrero->descuento();
+    return SIess;
+}
+
+double Controlador::SnetoTp()
+{
+    double SnetoTotal=0;
+    SnetoTotal += m_obrero->salarioNeto();
+    return SnetoTotal;
 }
 
 Obrero *Controlador::obrero() const

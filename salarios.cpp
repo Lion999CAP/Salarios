@@ -1,5 +1,6 @@
 #include "salarios.h"
 #include "ui_salarios.h"
+#include "obrero.h"
 
 Salarios::Salarios(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,13 @@ Salarios::~Salarios()
     delete ui;
 }
 
+void Salarios::imprecionTotales()
+{
+    // imprimiendo el total a pagar
+    ui->outSbruto->setText("$ " + QString::number(m_controlador->SbrutoTp(), 'f', 2));
+    ui->outSiess->setText("$ " + QString::number(m_controlador->SiessTp(), 'f', 2));
+    ui->outSneto->setText("$ " + QString::number(m_controlador->SnetoTp(), 'f', 2));
+}
 
 void Salarios::on_cmdCalcular_clicked()
 {
@@ -43,7 +51,7 @@ void Salarios::guardar()
         // Crear un 'stream' de texto
         QTextStream salida(&archivo);
         // Enviar los datos del resultado a la salida
-        salida << ui->outResultado->toPlainText();
+        salida << ui->outResultado->toPlainText() <<"\n@\n"<< ui->outSbruto->text()<<"\n"<< ui->outSiess->text() <<"\n"<< ui->outSneto->text();
         // Mostrar 5 segundo que todo fue bien
         ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
     }else {
@@ -54,7 +62,6 @@ void Salarios::guardar()
     }
     // Cerrar el archivo
     archivo.close();
-
 }
 
 void Salarios::abrir()

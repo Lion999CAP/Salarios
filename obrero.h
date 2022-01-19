@@ -26,14 +26,15 @@ public:
     TipoJornada jornada() const;
     void setJornada(TipoJornada newJornada);
 
-    double salarioBruto() const;
+    double salarioBruto();
     void setSalarioBruto(double newSalarioBruto);
-    double salarioNeto() const;
+    double salarioNeto();
     void setSalarioNeto(double newSalarioNeto);
     double descuento() const;
     void setDescuento(double newDescuento);
 
     QString toString();
+
 
 signals:
 

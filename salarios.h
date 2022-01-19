@@ -8,6 +8,7 @@
 
 #include "controlador.h"
 #include "acerca.h"
+#include "obrero.h"
 
 #define VERSION "1.1"
 
@@ -22,6 +23,8 @@ class Salarios : public QMainWindow
 public:
     Salarios(QWidget *parent = nullptr);
     ~Salarios();
+
+    void imprecionTotales();
 
 private slots:
     void on_cmdCalcular_clicked();
@@ -43,5 +46,6 @@ private:
     void limpiar();
     void guardar();
     void abrir();
+
 };
 #endif // SALARIOS_H
