@@ -12,7 +12,6 @@ bool Controlador::agregarObrero(QString nombre, int horas, TipoJornada jornada)
     return true;
 }
 
-
 bool Controlador::calcularSalario()
 {
     // Validar que el obrero no sea nulo
@@ -53,7 +52,6 @@ bool Controlador::calcularSalario()
     m_obrero->setSalarioNeto(salarioNeto);
     // Retornar true (todo se calculo correctamente)
     return true;
-
 }
 
 double Controlador::SbrutoTp()

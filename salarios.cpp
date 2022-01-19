@@ -17,10 +17,10 @@ Salarios::~Salarios()
 
 void Salarios::imprecionTotales()
 {
-    // imprimiendo el total a pagar
-    ui->outSbruto->setText("$ " + QString::number(m_controlador->SbrutoTp(), 'f', 2));
-    ui->outSiess->setText("$ " + QString::number(m_controlador->SiessTp(), 'f', 2));
-    ui->outSneto->setText("$ " + QString::number(m_controlador->SnetoTp(), 'f', 2));
+    //Imprimiendo el total a pagar
+    ui->outSbruto->setText("$ " + QString::number(m_controlador->SbrutoTp()));
+    ui->outSiess->setText("$ " + QString::number(m_controlador->SiessTp()));
+    ui->outSneto->setText("$ " + QString::number(m_controlador->SnetoTp()));
 }
 
 void Salarios::on_cmdCalcular_clicked()
@@ -51,7 +51,7 @@ void Salarios::guardar()
         // Crear un 'stream' de texto
         QTextStream salida(&archivo);
         // Enviar los datos del resultado a la salida
-        salida << ui->outResultado->toPlainText() <<"\n@\n"<< ui->outSbruto->text()<<"\n"<< ui->outSiess->text() <<"\n"<< ui->outSneto->text();
+        salida << ui->outResultado->toPlainText() <<"\n@\n"<< ui->outSbruto->text()<<"\n"<< ui->outSiess->text() <<"\n"<< ui->outSneto->text() <<"\n";
         // Mostrar 5 segundo que todo fue bien
         ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
     }else {
@@ -80,9 +80,11 @@ void Salarios::abrir()
         QTextStream entrada(&archivo);
         // Leer todo el contenido
         QString dato= entrada.readAll();
+        if(dato != "@"){
         //Cargar el contenido al area del texto
         ui->outResultado->clear();
         ui->outResultado->setPlainText(dato);
+        }
         // Mostrar 5 segundo que todo fue bien
         ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
     }else {
@@ -145,7 +147,6 @@ void Salarios::calcular()
     }
 }
 
-
 void Salarios::on_actionGuardar_triggered()
 {
     guardar();
@@ -157,7 +158,6 @@ void Salarios::on_actionNuevo_triggered()
     limpiar();
     ui->outResultado->clear();
 }
-
 
 void Salarios::on_actionAbrir_triggered()
 {
@@ -173,4 +173,3 @@ void Salarios::on_actionAcerca_de_Salarios_triggered()
     // mostrar la ventana
     dialogo->exec();
 }
-
